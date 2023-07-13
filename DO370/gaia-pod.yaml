@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gaia-pod
+spec:
+  volumes:
+    - name: gaia-volume
+      persistentVolumeClaim:
+        claimName: gaia-claim
+  containers:
+    - name: gaia-container
+      image: alpine:latest
+      command: ["/bin/sh"]
+      args: ["-c", "sleep 3600"]
+      volumeMounts:
+        - name: gaia-volume
+          mountPath: /data
